@@ -1,0 +1,13 @@
+# Python artifacts
+__pycache__/
+*.pyc
+
+# Generated outputs from the pipeline
+*.png
+zones_data.npz
+zones_links.json
+maze_path.txt
+maze_full.txt
+maze_rect.txt
+maze_rect_added_edges.txt
+test_path_*_*.png
