@@ -39,7 +39,7 @@ from collections import deque
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-# Region: helpers
+#region: helpers
 
 def make_square_zone(size=30):
     """Generate a square zone of given side length.
@@ -248,8 +248,9 @@ def strategy_random_backtrack(zone, start, end, time_limit=5.0, live=False,
         if tail:
             best_path = best_path + tail[1:]
     return best_path
+#endregion
 
-# Region: recursive split-and-fill solver
+#region: recursive split-and-fill solver
 
 def find_split_edge(zone, path):
     """Find an edge in `path` that borders the same remaining component on both sides.
@@ -320,8 +321,9 @@ def recursive_fill(zone, start, end, base_path, time_limit=35.0, live=False, plo
             snap_counter[0] += 1
         return result_path
     return base_path
+#endregion
 
-# Region: refinement (shoelace on remaining)
+#region: refinement (shoelace on remaining)
 
 def components(cells):
     """Split a set of cells into 4-connected components.
@@ -408,8 +410,9 @@ def refine_shoelace(zone, best_path, end):
         if seg:
             new_path.extend(seg[1:])
     return new_path
+#endregion
 
-# Region: split a straight segment and fill adjacent hole (shoelace variant)
+#region: split a straight segment and fill adjacent hole (shoelace variant)
 
 def longest_straight_segment(path):
     """Identify the longest straight (axis-aligned) segment in a path.
@@ -477,8 +480,9 @@ def split_segment_fill(zone, best_path, time_limit=2.0):
     # splice
     new_path = best_path[:mid_idx] + sub_path + best_path[mid_idx+1:]
     return new_path
+#endregion
 
-# Region: fill adjacent component by replacing an edge with a sub-path through the hole
+#region: fill adjacent component by replacing an edge with a sub-path through the hole
 
 def fill_adjacent_component(zone, best_path, time_limit=3.0):
     """Replace a path edge with a sub-path that traverses an adjacent component.
@@ -591,3 +595,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+#endregion
